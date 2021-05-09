@@ -1,0 +1,30 @@
+---
+title: R vs Python on an mtcars dataset
+author: ''
+date: '2021-05-09'
+slug: performing-pca-in-python
+categories: []
+tags:
+description: ''
+---
+```{r}
+library(reticulate)
+mtcars
+library(ggplot2)
+ggplot(mtcars,aes(wt, mpg)) + geom_point(aes(color=hp)) + scale_color_gradient(low = "red", high = "green" )
+```
+
+```{python}
+import numpy as np
+print("The average miles/gallon of the cars is " + str(np.mean(r.mtcars["mpg"])) + "\n")
+```
+```{python}
+print("The average weight of the cars is \n" + str(np.mean(r.mtcars["wt"])) + "\n")
+```
+
+
+```{python}
+print("The average gross horsepower of the trees is " + str(np.mean(r.mtcars["hp"])) + "\n")
+```
+#A random motorcycle for this mtcars dataset
+![](/post/2021-05-09-performing-pca-in-python_files/IMG_2513.jpg)

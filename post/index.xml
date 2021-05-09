@@ -17,5 +17,23 @@
 Link to google</description>
     </item>
     
+    <item>
+      <title>R vs Python on an mtcars dataset</title>
+      <link>/post/2021/05/09/performing-pca-in-python/</link>
+      <pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/05/09/performing-pca-in-python/</guid>
+      <description>library(reticulate) mtcars ## mpg cyl disp hp drat wt qsec vs am gear carb ## Mazda RX4 21.0 6 160.0 110 3.90 2.620 16.46 0 1 4 4 ## Mazda RX4 Wag 21.0 6 160.0 110 3.90 2.875 17.02 0 1 4 4 ## Datsun 710 22.8 4 108.0 93 3.85 2.320 18.61 1 1 4 1 ## Hornet 4 Drive 21.4 6 258.0 110 3.08 3.215 19.44 1 0 3 1 ## Hornet Sportabout 18.</description>
+    </item>
+    
+    <item>
+      <title>R vs Python on an mtcars dataset</title>
+      <link>/post/2021/05/09/r-vs-python-on-an-mtcars-dataset/</link>
+      <pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/05/09/r-vs-python-on-an-mtcars-dataset/</guid>
+      <description>library(reticulate) mtcars ## mpg cyl disp hp drat wt qsec vs am gear carb ## Mazda RX4 21.0 6 160.0 110 3.90 2.620 16.46 0 1 4 4 ## Mazda RX4 Wag 21.0 6 160.0 110 3.90 2.875 17.02 0 1 4 4 ## Datsun 710 22.8 4 108.0 93 3.85 2.320 18.61 1 1 4 1 ## Hornet 4 Drive 21.4 6 258.0 110 3.08 3.215 19.44 1 0 3 1 ## Hornet Sportabout 18.</description>
+    </item>
+    
   </channel>
 </rss>
