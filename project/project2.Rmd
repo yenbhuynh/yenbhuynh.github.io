@@ -1,0 +1,506 @@
+---
+title: "Project 2"
+author: "ybh83"
+date: "4/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+YEN BAO HUYNH ybh83
+
+#HERE IS MY PROJECT
+The dataset was acquired from the Exposome Explorer website (http://exposome-explorer.iarc.fr/). This website a database about biomarkers of exposure to environmental risk factors for diseases. From this site, I got a cancer associations dataset. This datatset is about the different acquired specimens of cancer patients. The dataset, generally, provides information such as what biomarkers were used to identify the different cancers, what kind of analytical method (GC-MS, LC-MS, HPLC, etc) were used, and some other related  epidemiological data.
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+cancer_dat <-read_csv("cancer_association_forR.csv")
+
+glimpse(cancer_dat)
+
+
+```
+#How many observations in the original dataset? 
+
+```{r}
+count(cancer_dat)
+#Answer: 1356 observations
+```
+
+#Just doing some tidying here. I'm only interested in biological samples that were analyzed by either HPLC or LC-MS/MS so I filtered out those two data. Also by this way I can create binary variables for this project...
+```{r}
+cancer_dat2 <- cancer_dat%>%select(-"Biomarker_detail")%>%na.omit()%>%filter(analytical_method=="HPLC")
+cancer_dat3 <- cancer_dat%>%select(-"Biomarker_detail")%>%na.omit()%>%filter(analytical_method=="LC-MS/MS")
+cancerdata<-rbind(cancer_dat3,cancer_dat2)
+cancerdata_final<-cancerdata%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+```
+
+
+**1. (15 pts)** Perform a MANOVA testing whether any of your numeric variables (or a subset of them, if including them all is unreasonable or doesn't make sense) show a mean difference across levels of one of your categorical variables (3). If they do, perform univariate ANOVAs to find response(s) showing a mean difference across groups (3), and perform post-hoc t tests to find which groups differ (3). Discuss the number of tests you have performed, calculate the probability of at least one type I error (if unadjusted), and adjust the significance level accordingly (bonferroni correction) before discussing significant differences (3). Briefly discuss some of the MANOVA assumptions and whether or not they are likely to have been met here (no need for anything too in-depth) (2).
+**1. (15 pts)** Let's see if the No. of subjects and No.of cases are different among cancers (the different types of cancers)
+```{r}
+#Firstly, test with MANOVA
+man1 <- manova(cbind(Number_of_subjects,Number_of_cases)~Cancer, data=cancerdata_final)
+
+summary(man1)
+#p-value is much lower than 0.05. Overall MANOVA is significant
+```
+```{r}
+#The difference is significant now. Let's do ANOVA to see which is different across the cancer types: number of subjects or number of cases
+summary.aov(man1)
+#Seems like both the number of subjects and number of cases are significantly different across the different types of cancer.  So, at least one type of cancer differs!
+```
+
+```{r}
+#Post-hoc t tests
+cancerdata_final%>%group_by(Cancer)%>%summarize(mean(Number_of_subjects),mean(Number_of_cases))
+
+pairwise.t.test(cancerdata_final$Number_of_subjects,cancerdata_final$Cancer, p.adj="none")
+pairwise.t.test(cancerdata_final$Number_of_cases,cancerdata_final$Cancer, p.adj="none")
+
+#Answer: only a few types of cancer are significantly different from each other in terms of number of subjects and number of cases studied. For example: Brain cancer vs Colon and rectal cancer, brain cancer vs lung cancer, breast cancer vs lung cancer, colon and rectal cancer vs lung cancer, etc (p-value< 0.05 are showed in the result). Those with no reported p-value could be because there are two few observations for that specific cancer group. 
+```
+```{r}
+#So i conducted 1 Manova, 2 Anovas,  90 t-tests. Overall, I did 103 tests in total. #bonferroni α 
+0.05/103
+1-0.05^103
+
+
+#If I want to keep the overall type I error rate at .05, I should be using 0.0004854369 as the boneferonni adjusted rate. 
+```
+
+```{r}
+#Adjusting for multiple comparison using bonferroni correction
+cancerdata_final%>%group_by(Cancer)%>%summarize(mean(Number_of_subjects),mean(Number_of_cases))
+
+pairwise.t.test(cancerdata_final$Number_of_subjects,cancerdata_final$Cancer, p.adj="bonferroni")
+pairwise.t.test(cancerdata_final$Number_of_cases,cancerdata_final$Cancer, p.adj="bonferroni")
+
+#Results now show that only head and neck is siggnificantly different from prostate cancer, in terms of number of subjects and number of cases studied.
+```
+
+```{r}
+#Discussing some MANOVA assumptions:
+library(rstatix)
+group <- cancerdata_final$Cancer
+DVs <- cancerdata_final %>% select(Number_of_subjects,Number_of_cases)
+#Test homogeneity of (co)variances
+box_m(DVs, group)
+#*Answers: this assumption was not met. Could it be because I have too few observations for some cancer types?
+
+```
+
+ **2. (10 pts)** Perform some kind of randomization test on your data (that makes sense). The statistic can be anything you want (mean difference, correlation, F-statistic/ANOVA, chi-squared), etc. State null and alternative hypotheses, perform the test, and interpret the results (7). Create a plot visualizing the null distribution and the test statistic (3).
+```{r}
+#Question: is there an association between the mean number of subjects study and the country?
+#Null hypothesis H0: the mean number of subjects studied is the same across different countries
+#HA: the mean number of subjects studied is different across different countries
+
+```
+ 
+```{r}
+cancerdata_final%>%count(analytical_method)
+ran_dist_dat<-cancerdata_final%>%select(analytical_method, Number_of_subjects)%>%group_by(analytical_method)%>%glimpse()
+
+#look at the distribution of the number of subjects in each country. 
+ggplot(ran_dist_dat,aes(Number_of_subjects,fill=analytical_method))+geom_histogram(bins=6.5)+
+  facet_wrap(~analytical_method,ncol=2)+theme(legend.position="none")
+
+#observed difference in means of number of subjects across countries
+ran_dist_dat%>%group_by(analytical_method)%>%summarize(means=mean(Number_of_subjects))%>%summarize(`mean_diff`=diff(means))
+
+
+#accurately simulate the distribution of the mean difference under the null hypothesis
+rand_dist<-vector() #create vector to hold diffs under null hypothesis
+
+for(i in 1:5000){
+  new<-data.frame(Number_of_subjects=sample(ran_dist_dat$Number_of_subjects),analytical_method=ran_dist_dat$analytical_method) #scramble columns
+rand_dist[i]<-mean(new[new$analytical_method=="LC-MS/MS",]$Number_of_subjects)-   
+              mean(new[new$analytical_method=="HPLC",]$Number_of_subjects)} 
+
+{hist(rand_dist,main="",ylab=""); abline(v = c(-309.1101, 309.1101),col="red")}
+
+
+#The p-value comes out to be 0.0504. Close! But we still fail to reject H0.
+mean(rand_dist>309.1101 | rand_dist< -309.1101) #two-tailed p value
+```
+#ANSWER: I did a randomization test to test the mean difference between the number of subjects of HPLC method and that of LC-MS/MS method. The final p-value turned out to be 0.0504 (so close to 0.05). I failed to reject the null hypothesis. The mean number of subjects of LC-MS/MS and HPLC is the same. 
+ 
+ 
+ **3. (40 pts)** Build a linear regression model predicting one of your response variables from at least 2 other variables, including their interaction. Mean-center any numeric variables involved in the interaction.
+
+    - Interpret the coefficient estimates (do not discuss significance) (10)
+    - Plot the regression using `ggplot()` using geom_smooth(method="lm"). If your interaction is numeric by numeric, refer to code in the slides to make the plot or check out the `interactions` package, which makes this easier. If you have 3 or more predictors, just chose two of them to plot for convenience. (10)
+    - What proportion of the variation in the outcome does your model explain? (4)
+    
+```{r}
+cancerdata_final%>%ggplot(aes(Number_of_subjects,Number_of_cases))+geom_point()
+
+#regress No.of subjects on No. of cases alone
+
+fit<-lm(Number_of_subjects~Number_of_cases, data= cancerdata_final)
+summary(fit)
+
+cancerdata_final%>%ggplot(aes(Number_of_subjects,Number_of_cases))+geom_point()+geom_smooth(method = 'lm',se=F)
+
+#Based on the co-efficients, the best-fitting line is 
+#Number_of_subjects= 240.36854  + 2.00516 * Number_of_cases
+
+
+#What proportion of the variation in the outcome does your model explain?
+summary(fit)$r.sq
+#Answer: 77.54% (Low!)
+```
+
+
+
+```{r}
+#regress No.of subjects on No. of cases alone
+
+fit2<-lm(Number_of_subjects~Numberofcontrols, data= cancerdata_final)
+summary(fit2)
+
+cancerdata_final%>%ggplot(aes(Number_of_subjects,Numberofcontrols))+geom_point()+geom_smooth(method = 'lm',se=F)
+
+
+#Based on the co-efficients, the best-fitting line is 
+#Number_of_subjects= 130.91384   + 1.46227    * Numberofcontrols
+
+#What proportion of the variation in the outcome does your model explain?
+summary(fit2)$r.sq
+#Answer: 89.67% *still low*
+```
+```{r}
+#regress Number of subjects on Number of cases and Number of controls together
+
+
+cancerdata_final$center_cases <- cancerdata_final$Number_of_cases - mean(cancerdata_final$Number_of_cases)
+
+cancerdata_final$center_controls <- cancerdata_final$Numberofcontrols - mean(cancerdata_final$Numberofcontrols)
+
+fit3<-lm(Number_of_subjects ~ center_cases*center_controls, data=cancerdata_final)
+summary(fit3)
+
+#What proportion of the variation in the outcome does your model explain?
+summary(fit3)$r.sq
+#Answer: 100%???
+```
+#ANSWER: All values are now centered. The predicted value of number of subjects when the numbers of cases and controls are 0 is ~1147. The coefficient for Number_of_cases is ~1, which is the slope of Number_of_cases on number of subjects while the number of controls is constant. This positive number means that the relationship between number of subjects and number of cases is "visible". The coefficient for number of controls is also ~1, which is the slope of number of controls on number of subjects while the cases is constant. So it is kinda the same intepretation for the two variables. The coefficient for Number_of_cases:Numberofcontrols  is ~0 . It means there is really no difference in slope between number of cases and controls. This variable explains whether there is an interaction between number of cases and number of controls
+
+#Check assumptions of linearity, normality, and homoskedasticity either graphically or using a hypothesis test (5)
+
+```{r}
+#Normality test. the p-value is <0.05 --> not normal. Null hypothesis is rejected
+resids<-lm(Number_of_subjects~Number_of_cases, data=cancerdata_final)$residuals
+ks.test(resids, "pnorm", mean=0, sd(resids))
+```
+```{r}
+#linearity and homoskedasticity: not met. non linear and not homoskedastic
+fitted<-lm(Number_of_subjects~Number_of_cases, data=cancerdata_final)$fitted.values
+resids<-fit$residuals
+fitvals<-fit$fitted.values
+ggplot()+geom_point(aes(fitvals,resids))+geom_hline(yintercept=0, color='red')
+
+
+```
+
+#Regardless, recompute regression results with robust standard errors via `coeftest(..., vcov=vcovHC(...))`. Discuss significance of results, including any changes from before/after robust SEs if applicable. (10)
+
+
+```{r}
+library(sandwich); library(lmtest)
+fit5<-lm(Number_of_subjects~Number_of_cases, data=cancerdata_final)
+coeftest(fit5, vcov = vcovHC(fit5))
+
+fit6<-lm(Number_of_subjects~Numberofcontrols, data=cancerdata_final)
+coeftest(fit6, vcov = vcovHC(fit6))
+
+fit7<-lm(Number_of_subjects ~ center_cases*center_controls, data=cancerdata_final)
+coeftest(fit7, vcov = vcovHC(fit7))
+
+
+```
+#Interpretation: the results did not change much. For the three regressions that I ran, the coefficients, the std. error, and the p-value stays about the same before and after regression with robust SEs. The p values are highly significant. What I am thinking is that the p-value might have got better through the use of robust SEs, but still highly significant anyway so we cannot see the change in significance? Or could it be because the numeric variables of my dataset is just...weird?
+
+- **4. (5 pts)** Rerun same regression model (with the interaction), but this time compute bootstrapped standard errors (either by resampling observations or residuals). Discuss any changes you observe in SEs and p-values using these SEs compared to the original SEs and the robust SEs)
+```{r}
+# repeat 5000 times, saving the coefficients each time
+samp_distn<-replicate(5000, {
+boot_dat<-boot_dat<-cancerdata_final[sample(nrow(cancerdata_final),replace=TRUE),]
+fit9<-lm(Number_of_subjects ~ center_cases*center_controls, data=boot_dat)
+coef(fit9)
+})
+
+## Estimated SEs
+samp_distn%>%t%>%as.data.frame%>%summarize_all(sd)
+
+```
+#ANSWER: Interpretation: The SEs now are remarkably lowered in comparison to the original SEs and the robust SEs. Bootstrapped SE sounds like a better choice for my dataset because I violated the 2 assumptions (both homoskedasticity and normality )
+
+- **5. (30 pts)** Fit a logistic regression model predicting a binary variable (if you don't have one, make/get one) from at least two explanatory variables (interaction not necessary). 
+
+    - Interpret coefficient estimates in context (10)
+    - Report a confusion matrix for your logistic regression (5)
+    - Compute and discuss the Accuracy, Sensitivity (TPR), Specificity (TNR), Precision (PPV), and AUC of your model (5)
+    - Using ggplot, make a density plot of the log-odds (logit) colored/grouped by your binary outcome variable (5)
+    - Generate an ROC curve (plot) and calculate AUC (either manually or with a package); interpret (5)
+    
+```{r}
+# predict $y$ (analytical_methodm LC-MS/MS or HPLC) from `Biospecimen` using a logistic regression
+
+fit_log<-glm(y~Biospecimen, data=cancerdata_final, family="binomial")
+summary(fit_log)
+exp(coef(fit_log))%>%round(3)%>%data.frame
+
+
+```
+#ANSWER: The reference category here is plasma, fasting biospecimens. The odds of using HPLC for most of the biospecimens are lower than that of plasma, fasting biospecimens. This is the case, with the exception of those urine specimen, both urine, spot and urine, overnight. The odds of using HPLC for urine, overnight is 462595172.716 times that of plasma, fasting (is this number...also "odd"?). The odd of using HPLC for urine, spot is  4.333 times that of plasma, fasting. 
+
+
+
+#Report a confusion matrix for your logistic regression (5)
+```{r}
+cancerdata_final<-cancerdata%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+probs<-predict(fit_log,type="response")
+table(predict=as.numeric(probs>.5),truth=cancerdata_final$analytical_method)%>%addmargins
+
+#
+```
+#ANSWER: Not sure why the confusion matrix doesn not show LC-MS/MS as 1 and HPLC as 0
+
+
+#Compute and discuss the Accuracy, Sensitivity (TPR), Specificity (TNR), Precision (PPV), and AUC of your model (5)
+```{r}
+library(plotROC)
+#Accuracy:
+(488+31)/589
+#Sensitivity (TPR): probability of LC-MS/MS if it is actually used for the biospecimen
+31/76
+#Specificity (TNR): probability of using HPLC if it is actually used
+488/513
+#Precision (PPV): the proportion of  HPLC usage that is actually used for the biospecimens
+31/56
+
+cancerdata_final<-cancerdata_final%>%mutate(probs<-predict(fit_log,type="response"), prediction=ifelse(probs>.5,1,0))
+classify<-cancerdata_final%>%transmute(probs,prediction,truth=y)
+classify
+
+ROCplot<-ggplot(classify)+geom_roc(aes(d=truth,m=probs), n.cuts=0)
+
+
+calc_auc(ROCplot)
+
+
+```
+#ANSWER: AUC of the model is 0.81, which is a good AUC by the rule of thumb for AUC. The true negative rate is great!
+
+
+#Using ggplot, make a density plot of the log-odds (logit) colored/grouped by your binary outcome variable (5)
+```{r}
+
+## Density plot of log-odds for each outcome:
+cancerdata_final<-cancerdata%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+
+density_plot<-cancerdata_final%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+density_plot$analytical_method<-factor(density_plot$analytical_method,levels=c("LC-MS/MS","HPLC")) 
+head(density_plot)
+
+fit_plot<-glm(y~Biospecimen, data=density_plot, family="binomial")
+
+density_plot$logit<-predict(fit_plot,type="link") #get log-odds for everyone
+
+density_plot%>%ggplot()+geom_density(aes(logit,color=analytical_method,fill=analytical_method), alpha=.4)+
+  theme(legend.position=c(.85,.85))+geom_vline(xintercept=0)+xlab("logit (log-odds)")+
+  geom_rug(aes(logit,color=analytical_method))+
+  geom_text(x=-6,y=.15,label="TN = 488")+
+  geom_text(x=-1.75,y=.05,label="FN = 45")+
+  geom_text(x=-0.5,y=.03,label="FP = 25")+
+  geom_text(x=2,y=.1,label="TP = 31")
+```
+
+#Generate an ROC curve (plot) and calculate AUC (either manually or with a package); interpret (5)
+```{r}
+cancerdata_final<-cancerdata_final%>%mutate(probs<-predict(fit_log,type="response"), prediction=ifelse(probs>.5,1,0))
+classify<-cancerdata_final%>%transmute(probs,prediction,truth=y)
+classify
+
+ROCplot<-ggplot(classify)+geom_roc(aes(d=truth,m=probs), n.cuts=0)
+
+ROCplot
+calc_auc(ROCplot)
+
+#AUC: 0.81
+```
+
+
+
+
+- **6. (25 pts)** Perform a logistic regression predicting the same binary response variable from *ALL* of the rest of your variables (the more, the better!) 
+
+    - Fit model, compute in-sample classification diagnostics (Accuracy, Sensitivity, Specificity, Precision, AUC), and interpret (5)
+    - Perform 10-fold (or repeated random sub-sampling) CV with the same model and report average out-of-sample classification diagnostics (Accuracy, Sensitivity, Specificity, Precision, and AUC); interpret AUC and compare with the in-sample metrics (10)
+    - Perform LASSO on the same model/variables. Choose lambda to give the simplest model whose accuracy is near that of the best (i.e., `lambda.1se`). Discuss which variables are retained. (5)
+    - Perform 10-fold CV using only the variables lasso selected: compare model's out-of-sample AUC to that of your logistic regressions above (5)
+    
+```{r}
+cancer8<-cancerdata_final%>%select(-ID, -ExcretionID,-Subjectgroup)
+cancer8_final<-cancer8%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+```
+
+# Fit model, compute in-sample classification diagnostics (Accuracy, Sensitivity, Specificity, Precision, AUC), and interpret (5)
+```{r}
+#LEAVE THIS CHUNK ALONE!
+library(knitr)
+opts_chunk$set(fig.align="center", fig.height=5, message=FALSE, warning=FALSE, fig.width=8, tidy.opts=list(width.cutoff=60),tidy=TRUE)
+
+class_diag<-function(probs,truth){
+  
+  tab<-table(factor(probs>.5,levels=c("FALSE","TRUE")),truth)
+  acc=sum(diag(tab))/sum(tab)
+  sens=tab[2,2]/colSums(tab)[2]
+  spec=tab[1,1]/colSums(tab)[1]
+  ppv=tab[2,2]/rowSums(tab)[2]
+
+  if(is.numeric(truth)==FALSE & is.logical(truth)==FALSE) truth<-as.numeric(truth)-1
+  
+  #CALCULATE EXACT AUC
+  ord<-order(probs, decreasing=TRUE)
+  probs <- probs[ord]; truth <- truth[ord]
+  
+  TPR=cumsum(truth)/max(1,sum(truth)) 
+  FPR=cumsum(!truth)/max(1,sum(!truth))
+  
+  dup<-c(probs[-1]>=probs[-length(probs)], FALSE)
+  TPR<-c(0,TPR[!dup],1); FPR<-c(0,FPR[!dup],1)
+  
+  n <- length(TPR)
+  auc<- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+
+  data.frame(acc,sens,spec,ppv,auc)
+}
+```
+
+
+```{r}
+fit10<-glm(y~(.), data=cancer8_final, family="binomial")
+prob10<-predict(fit10,type="response")
+class_diag(prob10,cancer8_final$analytical_method)
+
+```
+#ANSWER: So I tried every possible way that I could think of (omitting variable such as ID, excretion ID, subjectgroup). I also tried making a dataset that has randomcombination of variables (not all available variable in the original dataset), and use the newly made dataset to run the logistic regression of analytical method with all the remaining variables. All results came out as being 1. with the AUC is NA.  When I tried running y with only one variable, such as Country or Biospecimen, the class_diag results came out normal with reasonable numbers. I guess my data is overfitted?
+
+
+#- Perform 10-fold (or repeated random sub-sampling) CV with the same model and report average out-of-sample classification diagnostics (Accuracy, Sensitivity, Specificity, Precision, and AUC); interpret AUC and compare with the in-sample metrics (10)
+
+```{r}
+#THANK YOU DR.WOODWARD SO MUCH FOR HELPING ME SOLVING THIS PROBLEM. I KNOW THAT I MADE A BAD CHOICE OF CHOOSING THE DATASET BUT YOU SAVED IT!
+set.seed(1234)
+k=10
+
+#A lot of variables in this dataset has one single observation for a category. So I filtered them out before regressing. 
+cancer9_final<-cancerdata_final%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+
+tidycancer<-cancer9_final%>%select(-ID, -ExcretionID,-Subjectgroup,-Biomarker,-Publication,-Study_design,-analytical_method)%>%
+  group_by(Cohort) %>%
+  filter(n() > 10)
+
+tidycancer2<-tidycancer%>%group_by(Population)%>%filter(n() > 4)
+tidycancer2<-tidycancer2%>%ungroup%>%na.omit()
+
+#Until Here. Done filtering. Time for 10-fold cross validation
+data11<-tidycancer2[sample(nrow(tidycancer2)),] #put dataset in random order
+folds<-cut(seq(1:nrow(tidycancer2)),breaks=k,labels=F) #create folds
+
+diags<-NULL
+for(i in 1:k){          # FOR EACH OF 10 FOLDS
+train<-data11[folds!=i,] # CREATE TRAINING SET
+test<-data11[folds==i,]  # CREATE TESTING SET
+
+truth2<-test$y
+
+fit11<- glm(y~(.), data=train,family = "binomial")
+prob11<- predict(fit11,  newdata=test, type="response")
+summary(fit11)
+diags<-rbind(diags,class_diag(prob11,truth2)) #CV DIAGNOSTICS FOR EACH FOLD
+}
+
+summarize_all(diags,mean) #AVERAGE THE DIAGNOSTICS ACROSS THE 10 FOLDS
+```
+#ANSWER: the ACC is 0.95, the sensitivity is 0.87, the specificity is 0.99, the ppv is 0.90, the AUC is 0.93, which is great. I can't compare to the in-sample metrics, because the model in the previous step was actually overfitted. Anyway, the AUC in both models are great.
+
+#Perform LASSO on the same model/variables. Choose lambda to give the simplest model whose accuracy is near that of the best (i.e., `lambda.1se`). Discuss which variables are retained. (5)
+```{r}
+#install.packages("glmnet")
+library(glmnet)
+set.seed(1234)
+# your code here
+cancer9_final<-cancerdata_final%>%mutate(y=ifelse(analytical_method=="LC-MS/MS",1,0))
+tidycancer<-cancer9_final%>%select(-ID, -ExcretionID,-Subjectgroup,-Biomarker,-Publication,-Study_design,-analytical_method)%>%
+  group_by(Cohort) %>% filter(n() > 10)
+
+tidycancer2<-tidycancer%>%group_by(Population)%>%filter(n() > 4)
+tidycancer2<-tidycancer2%>%ungroup%>%na.omit()
+
+y<-as.matrix(tidycancer2$y) #grab response
+x<-model.matrix(y~.,data=tidycancer2)[,-1] #grab predictors
+
+cv <- cv.glmnet(x,y,family = "binomial") #picks an optimal value for lambda through 10-fold CV
+
+{plot(cv$glmnet.fit, "lambda", label=TRUE); abline(v = log(cv$lambda.1se)); abline(v = log(cv$lambda.min),lty=2)}
+
+
+
+cv<-cv.glmnet(x,y,family="binomial")
+lasso<-glmnet(x,y,family="binomial",lambda=cv$lambda.1se)
+coef(lasso)
+
+
+```
+#ANSWER: Hmmmmm...weird. The only value retaining is Brain cancer cases and their controls, with a 0 coefficient... I will just use that one value for the LASSO
+
+```{r}
+#classification diagnostics
+lasso_dat1 <- tidycancer2 %>% mutate(Braincancer= ifelse(Population == "Brain cancer cases and their controls", 
+    1, 0)) %>% select(Braincancer,y)
+
+lasso_dat<-glm(y~Braincancer, data=lasso_dat1, family="binomial")
+summary(lasso_dat)
+
+prob_lasso<-predict(lasso_dat, type="response")
+class_diag(prob_lasso,lasso_dat1$y)
+```
+#ANSWER: Using the LASSO-selected model, the AUC drops remarkably, bad AUC at 0.609
+
+#Perform 10-fold CV using only the variables lasso selected: compare model's out-of-sample AUC to that of your logistic regressions above (5)
+
+```{r}
+set.seed(1234)
+k=10
+
+
+data_lasso<-lasso_dat1[sample(nrow(lasso_dat1)),] #put dataset in random order
+folds_lasso<-cut(seq(1:nrow(lasso_dat1)),breaks=k,labels=F) #create folds
+
+diags_lasso<-NULL
+for(i in 1:k){          # FOR EACH OF 10 FOLDS
+train_lasso<-data_lasso[folds_lasso!=i,] # CREATE TRAINING SET
+test_lasso<-data_lasso[folds_lasso==i,]  # CREATE TESTING SET
+
+truth_lasso<-test_lasso$y
+
+fit_lasso<- glm(y~(.), data=train_lasso,family = "binomial")
+prob_lasso_10cv<- predict(fit_lasso,  newdata=test_lasso, type="response")
+summary(fit_lasso)
+diags_lasso<-rbind(diags_lasso,class_diag(prob_lasso_10cv,truth_lasso)) #CV DIAGNOSTICS FOR EACH FOLD
+}
+
+summarize_all(diags_lasso,mean) #AVERAGE THE DIAGNOSTICS ACROSS THE 10 FOLDS
+```
+#ANSWER: The out-of-sample AUC and the AUC from the lasso-selected model above are very similar, around 0.611. Still bad~

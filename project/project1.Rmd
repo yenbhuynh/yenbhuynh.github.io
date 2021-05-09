@@ -1,0 +1,212 @@
+---
+title: "Project1_final"
+author: "ybh83"
+date: "3/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+YEN BAO HUYNH ybh83
+##HERE IS MY PROJECT
+## R Markdown
+##the datasets here in this project are obtained from the International Cancer Genome Consortium Data Portal (ICGC Data Portal). Datasets here are current data as od Nov 26th, 2019. They are about the early onset of prostate cancers (EOPC) in Germany (DE). The "donors" mentioned throughout this project are the donors of prostate cancer specimen (tumour, solid tissue) for analyses.
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+donor_EOPC <-read_csv("donor_EOPC.csv")
+
+glimpse(donor_EOPC)
+
+donor_exposure <-read_csv("donor_exposure.csv")
+
+glimpse(donor_exposure)
+
+specimen <-read_csv("specimen.csv")
+
+glimpse(specimen)
+
+```
+##The EOPC and exposure datasets look tidy to me
+#Make specimen dataset tidy
+```{r}
+specimen<-specimen%>%select(-specimen_type_other)
+```
+
+```{r}
+specimen_no_duplicate<-distinct(specimen)
+```
+
+```{r}
+tidyspecimen<-specimen_no_duplicate%>%pivot_wider(-2,names_from = "specimen_type",values_from="tumour_confirmed")
+```
+
+#Joining
+
+#I made a right join of two datasets, then made a full join of the previously created dataset with the third dataset. I just thought it would be clearer and simpler to me if I do it this way. 
+```{r}
+joined_dataset<-right_join(donor_EOPC,donor_exposure,by="icgc_donor_id")
+```
+
+```{r}
+EOPC_exposure_specimen<-full_join(joined_dataset,tidyspecimen,by="icgc_donor_id")
+```
+
+```{r}
+setdiff(donor_EOPC$icgc_donor_id,EOPC_exposure_specimen$icgc_donor_id)
+```
+
+##Create summary statistics
+#select
+```{r}
+#Drop all the columns that contain NA only 
+EOPC_exposure_specimen1<-EOPC_exposure_specimen%>%select(-study_donor_involved_in,-donor_relapse_type,-donor_tumour_stage_at_diagnosis_supplemental,-cancer_type_prior_malignancy,-exposure_type,-exposure_intensity,-tobacco_smoking_intensity,-project_code.y,-submitted_donor_id.y,-donor_relapse_interval,-cancer_history_first_degree_relative)
+
+finaldataset<-na.omit(EOPC_exposure_specimen1)
+```
+
+```{r}
+#I want to see the time gap between the patients' smoking history and the time they were diagnosed with prostate cancer.
+finaldataset%>%select(icgc_donor_id,tobacco_smoking_history_indicator,donor_age_at_diagnosis)%>%glimpse()
+```
+
+#filter. I want to see if alcohol history will have any influence on the mortality of prostate cancer patients. There are too many "don't know/not sure" on alcohol history in this case so we can't really tell the impact. 
+
+```{r}
+finaldataset%>%filter(donor_vital_status=="alive",alcohol_history=="yes")
+finaldataset%>%filter(donor_vital_status=="alive",alcohol_history=="Don't know/Not sure")
+finaldataset%>%filter(donor_vital_status=="alive",alcohol_history=="no")
+finaldataset%>%filter(donor_vital_status=="deceased",alcohol_history=="yes")
+finaldataset%>%filter(donor_vital_status=="deceased",alcohol_history=="Don't know/Not sure")
+finaldataset%>%filter(donor_vital_status=="deceased",alcohol_history=="no")
+```
+
+#arrange. The highest age of diagnosis and enrollment in the survey is 75, the youngest is 38 years old. Prostate cancer typically affects men over 50, so the guy at 38 with cancer is a rare case. This result is based on the dataset with na.omit. I did run this code with the original dataset, and the youngest age is 32, while the oldest age stays the same, 75. 
+```{r}
+finaldataset%>%select(icgc_donor_id,donor_age_at_diagnosis,donor_age_at_enrollment)%>%arrange(desc(donor_age_at_diagnosis),desc(donor_age_at_enrollment))%>%head()
+
+finaldataset%>%select(icgc_donor_id,donor_age_at_diagnosis,donor_age_at_enrollment)%>%arrange(desc(donor_age_at_diagnosis),desc(donor_age_at_enrollment))%>%tail()
+```
+
+#group_by: it is hard to tell when the survival time are depicted in days, so I change it to year
+```{r}
+finaldataset%>%group_by(donor_age_at_diagnosis)%>%summarise()
+```
+
+
+#summarize 
+```{r}
+#relationship between being alive, at what stage of cancer, and how many cases for each different combinations
+finaldataset%>%group_by(donor_vital_status,disease_status_last_followup)%>%summarize(count=n())
+#see distinct 
+finaldataset%>%summarize_all(n_distinct)
+#Let's see if the survival time differs largely among people with different alcohol history
+finaldataset %>%group_by(alcohol_history) %>%summarize(mean_survival_time=mean(donor_survival_time))
+#Let's see the median age by disease status at last follow up
+finaldataset %>%group_by(disease_status_last_followup) %>%summarize(median_age=median(donor_age_at_last_followup))
+#Let's see the age range by vital status
+finaldataset %>%group_by(donor_vital_status) %>%summarize(min_age_by_vital_status=min(donor_age_at_last_followup),max_age_by_vital_status=max(donor_age_at_last_followup))
+```
+
+#mutate: Just a clarification on stage of tumour at diagnosis. What do those T1c, T1a, etc mean?
+```{r}
+finaldataset_mutate<-finaldataset%>% mutate(tumor_stage_at_diagnosis=recode(donor_tumour_stage_at_diagnosis, T1c="stage1-just found", T2a="stage2-half of one prostate's side",T2b="stage2-more than one half of one side",T3a="stage3-tumour grown outside the prostate",T2c="stage2-both sides of prostate"))
+glimpse(finaldataset_mutate)
+```
+
+#Visualizing 
+#Correlation heat map. Apparently there's a high correlation between the three age types, age at diagnosis, age at last follow up and age at enrollment. These kinds of patterns are also visible in the clustering result underneath. 
+```{r}
+finaldataset%>% select_if(is.numeric) %>% cor %>% as.data.frame %>%
+rownames_to_column %>% pivot_longer(-1) %>%
+ggplot(aes(rowname,name,fill=value))+geom_tile()+
+geom_text(aes(label=round(value,2)))+
+xlab("")+ylab("")+coord_fixed()+
+scale_fill_gradient2(low="red",mid="white",high="blue") + theme(axis.text.x=element_text(angle=45,hjust=1))
+
+```
+
+#plots
+
+```{r}
+#not choosing geom_point because there are donors that have the same age. The points on the plot won't tell how many donors are there or the proportion/frequency of people of the same age
+#ggplot(finaldataset, aes(x=donor_tumour_stage_at_diagnosis,y=donor_age_at_diagnosis,color="red", fill=donor_age_at_diagnosis)) +geom_point()
+```
+
+```{r}
+ggplot(finaldataset, aes(x=donor_age_at_diagnosis, fill=donor_tumour_stage_at_diagnosis)) +geom_histogram(binwidth = 2,colour="black")+scale_x_continuous(breaks = seq(30,75,5))+scale_y_continuous(breaks = seq(0,60,5))+ggtitle("Histogram of diagnosis age and tumour stage")+xlab("Age at diagnosis")+ylab("Count")
+
+
+#COMMENT: I tried boxplot, geom_point, geom_density and the histogram to see which one fits best. Histogram looks like the most informaive graph I can make for what I want: what age range is the most popular for prostate cancer diagnosis; and when the donors got diagnosed, what tumour stage were they in? Results are interesting. Most of the prostate cancer donors here got diagnosed at around 40 - 50 years old, and most of them were in the first stage of cancer. Rare cases where the donors were as old as 75, being at stage 2 happened as well. 
+```
+
+
+
+
+```{r}
+ggplot(finaldataset, aes(x = alcohol_history, y = donor_survival_time, fill= alcohol_history))+  geom_bar(stat="summary",fun=mean)+  geom_errorbar(stat="summary", fun.data=mean_se)+ggtitle("Survival time vs Alcohol history")+xlab("Alcohol history")+ylab("Donors' survival time")
+
+#COMMENT: I wanted to see alcohol history vs survival time relationship. The don'tknow/not sure column won't be telling us much due to the fact that donors could not give a concrete answer to their alcolhol history. But a yes to alcolhol history shows a shorter average survival time, around 750 days, which is approximately 2 years. Patients with no alcohol history might be able to live longer, around 3 years
+```
+
+##k-means
+```{r}
+library(tidyverse)
+library(cluster)
+
+```
+
+#There are 6 numeric variables in the finaldataset. However, here I only pick 3. This is because some of the numeric variabels in my dataset are basically similar in meaning, such as donor_survival_time and donor_interval_of_last_followup. Another numeric variable that I didn't include in clustering is the specimen interval. Since I'm mainly dealing with age, specimen interval won't be meaningful in clustering in my opinion.
+```{r}
+clust_dat<-finaldataset%>%dplyr::select(donor_age_at_diagnosis,donor_age_at_last_followup,donor_survival_time)
+
+```
+#Let's find the right number for k. k=6 seems like the best for the number of clusters based on my dataset. I also try k=7,8,9. They also give higher total variance in the data set that is explained by the clustering. However, I just feel like 9 clusters are just a little bit too many. k=6 gives the total variance at 96.9%, which I feel enough to deal with.
+```{r}
+library(cluster)
+sil_width<-vector() #empty vector to hold mean sil width
+for(i in 2:10){  
+  kms <- kmeans(clust_dat,centers=i) #compute k-means solution
+  sil <- silhouette(kms$cluster,dist(clust_dat)) #get sil widths
+  sil_width[i]<-mean(sil[,3]) #take averages (higher is better)
+}
+ggplot()+geom_line(aes(x=1:10,y=sil_width))+scale_x_continuous(name="k",breaks=1:10)
+```
+
+#Specify k=6
+```{r}
+kmeans1 <- clust_dat%>%kmeans(6)
+kmeans1
+
+```
+
+```{r}
+kmeansclust<-clust_dat%>%mutate(cluster=as.factor(kmeans1$cluster)) #save the cluster solution in your dataset
+kmeansclust%>%ggplot(aes(donor_age_at_diagnosis,donor_age_at_last_followup,color=cluster))+geom_point()
+```
+
+
+```{r}
+kmeansclust%>%ggplot(aes(donor_survival_time,donor_age_at_diagnosis,color=cluster))+geom_point()
+```
+
+```{r}
+kmeansclust%>%ggplot(aes(donor_age_at_last_followup,donor_survival_time,color=cluster))+geom_point()
+```
+
+
+```{r}
+library(GGally)
+ggpairs(kmeansclust,columns =1:3, aes(color=cluster))
+```
+
+#So I run both ggplot and ggpairs. I will explain my results from ggpairs because it gives a more holistic overview of the clustering result. The density plots along the diagonal shows that the age at diagnosis and age at last followup are mostly around people with 40-50 years of age. Donor survival time, however, scatters from very short to very long. The clusters showed as the scatter plots are interesting. The clusters show that I can group people mostly based on their survival time, since age at diagnosis and age at last followup are not too distinctly different (only a few years!). Based on the Pearson’s Correlation Coefficient, age at last follow up and age at diagnosis are highly correlated. However, survival time is not really in high correlation with the other two variables. I'm not sure but I guess this is because the survival time is counted in days, while the other two variables are counted in years? Anyhow, the clustering results still show understandable visualization on different groups of donors, based on their similarity in ages at diagnosis, at follow up, and survival time!
+
+

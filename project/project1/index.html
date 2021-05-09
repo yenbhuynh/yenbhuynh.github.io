@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Yen Huynh" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <title>Project1_final</title>
+    <meta name="generator" content="Hugo 0.83.1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../post/">BLOG</a></li>
+        
+        <li><a href="../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../project/project1/">Project1_final</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         January 1, 0001 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>YEN BAO HUYNH ybh83
+##HERE IS MY PROJECT
+## R Markdown
+##the datasets here in this project are obtained from the International Cancer Genome Consortium Data Portal (ICGC Data Portal). Datasets here are current data as od Nov 26th, 2019. They are about the early onset of prostate cancers (EOPC) in Germany (DE). The “donors” mentioned throughout this project are the donors of prostate cancer specimen (tumour, solid tissue) for analyses.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>donor_EOPC &lt;-read_csv(&quot;donor_EOPC.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_character(),
+##   donor_relapse_type = col_logical(),
+##   donor_age_at_diagnosis = col_double(),
+##   donor_age_at_enrollment = col_double(),
+##   donor_age_at_last_followup = col_double(),
+##   donor_relapse_interval = col_double(),
+##   donor_tumour_stage_at_diagnosis_supplemental = col_logical(),
+##   donor_survival_time = col_double(),
+##   donor_interval_of_last_followup = col_double(),
+##   cancer_type_prior_malignancy = col_logical()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<pre class="r"><code>glimpse(donor_EOPC)</code></pre>
+<pre><code>## Rows: 211
+## Columns: 21
+## $ icgc_donor_id                                &lt;chr&gt; &quot;DO228049&quot;, &quot;DO228042&quot;, …
+## $ project_code                                 &lt;chr&gt; &quot;EOPC-DE&quot;, &quot;EOPC-DE&quot;, &quot;E…
+## $ study_donor_involved_in                      &lt;chr&gt; NA, NA, NA, NA, NA, NA, …
+## $ submitted_donor_id                           &lt;chr&gt; &quot;EOPC-113&quot;, &quot;EOPC-104&quot;, …
+## $ donor_sex                                    &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, …
+## $ donor_vital_status                           &lt;chr&gt; &quot;alive&quot;, &quot;alive&quot;, &quot;alive…
+## $ disease_status_last_followup                 &lt;chr&gt; &quot;progression&quot;, &quot;stable&quot;,…
+## $ donor_relapse_type                           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, …
+## $ donor_age_at_diagnosis                       &lt;dbl&gt; 48, 44, 49, 50, 47, 48, …
+## $ donor_age_at_enrollment                      &lt;dbl&gt; 49, 44, 49, 51, 48, 48, …
+## $ donor_age_at_last_followup                   &lt;dbl&gt; 52, 47, 53, 53, 51, 52, …
+## $ donor_relapse_interval                       &lt;dbl&gt; 42, NA, NA, NA, NA, NA, …
+## $ donor_diagnosis_icd10                        &lt;chr&gt; &quot;C61&quot;, &quot;C61&quot;, &quot;C61&quot;, &quot;C6…
+## $ donor_tumour_staging_system_at_diagnosis     &lt;chr&gt; &quot;DRE and ultrasound&quot;, &quot;D…
+## $ donor_tumour_stage_at_diagnosis              &lt;chr&gt; &quot;T1c&quot;, &quot;T1c&quot;, &quot;T1c&quot;, &quot;T1…
+## $ donor_tumour_stage_at_diagnosis_supplemental &lt;lgl&gt; NA, NA, NA, NA, NA, NA, …
+## $ donor_survival_time                          &lt;dbl&gt; 1155, 1160, 1533, 1105, …
+## $ donor_interval_of_last_followup              &lt;dbl&gt; 1155, 1160, 1533, 1105, …
+## $ prior_malignancy                             &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, …
+## $ cancer_type_prior_malignancy                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, …
+## $ cancer_history_first_degree_relative         &lt;chr&gt; NA, NA, NA, NA, &quot;no&quot;, &quot;n…</code></pre>
+<pre class="r"><code>donor_exposure &lt;-read_csv(&quot;donor_exposure.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   icgc_donor_id = col_character(),
+##   project_code = col_character(),
+##   submitted_donor_id = col_character(),
+##   exposure_type = col_logical(),
+##   exposure_intensity = col_logical(),
+##   tobacco_smoking_history_indicator = col_character(),
+##   tobacco_smoking_intensity = col_logical(),
+##   alcohol_history = col_character(),
+##   alcohol_history_intensity = col_character()
+## )</code></pre>
+<pre class="r"><code>glimpse(donor_exposure)</code></pre>
+<pre><code>## Rows: 210
+## Columns: 9
+## $ icgc_donor_id                     &lt;chr&gt; &quot;DO228049&quot;, &quot;DO228042&quot;, &quot;DO228041&quot;,…
+## $ project_code                      &lt;chr&gt; &quot;EOPC-DE&quot;, &quot;EOPC-DE&quot;, &quot;EOPC-DE&quot;, &quot;E…
+## $ submitted_donor_id                &lt;chr&gt; &quot;EOPC-113&quot;, &quot;EOPC-104&quot;, &quot;EOPC-103&quot;,…
+## $ exposure_type                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ exposure_intensity                &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ tobacco_smoking_history_indicator &lt;chr&gt; &quot;Current reformed smoker for &lt;= 15 …
+## $ tobacco_smoking_intensity         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ alcohol_history                   &lt;chr&gt; &quot;yes&quot;, &quot;Don&#39;t know/Not sure&quot;, &quot;Don&#39;…
+## $ alcohol_history_intensity         &lt;chr&gt; &quot;Not Documented&quot;, &quot;Not Documented&quot;,…</code></pre>
+<pre class="r"><code>specimen &lt;-read_csv(&quot;specimen.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   icgc_donor_id = col_character(),
+##   specimen_type = col_character(),
+##   specimen_type_other = col_logical(),
+##   specimen_interval = col_double(),
+##   specimen_donor_treatment_type = col_character(),
+##   tumour_confirmed = col_character()
+## )</code></pre>
+<pre class="r"><code>glimpse(specimen)</code></pre>
+<pre><code>## Rows: 448
+## Columns: 6
+## $ icgc_donor_id                 &lt;chr&gt; &quot;DO228049&quot;, &quot;DO228049&quot;, &quot;DO228042&quot;, &quot;DO…
+## $ specimen_type                 &lt;chr&gt; &quot;Normal - blood derived&quot;, &quot;Primary tumo…
+## $ specimen_type_other           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ specimen_interval             &lt;dbl&gt; 28, 28, 45, 45, 41, 41, 139, 139, 73, 7…
+## $ specimen_donor_treatment_type &lt;chr&gt; &quot;no treatment&quot;, &quot;no treatment&quot;, &quot;no tre…
+## $ tumour_confirmed              &lt;chr&gt; &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, …</code></pre>
+<p>##The EOPC and exposure datasets look tidy to me
+#Make specimen dataset tidy</p>
+<pre class="r"><code>specimen&lt;-specimen%&gt;%select(-specimen_type_other)</code></pre>
+<pre class="r"><code>specimen_no_duplicate&lt;-distinct(specimen)</code></pre>
+<pre class="r"><code>tidyspecimen&lt;-specimen_no_duplicate%&gt;%pivot_wider(-2,names_from = &quot;specimen_type&quot;,values_from=&quot;tumour_confirmed&quot;)</code></pre>
+<p>#Joining</p>
+<p>#I made a right join of two datasets, then made a full join of the previously created dataset with the third dataset. I just thought it would be clearer and simpler to me if I do it this way.</p>
+<pre class="r"><code>joined_dataset&lt;-right_join(donor_EOPC,donor_exposure,by=&quot;icgc_donor_id&quot;)</code></pre>
+<pre class="r"><code>EOPC_exposure_specimen&lt;-full_join(joined_dataset,tidyspecimen,by=&quot;icgc_donor_id&quot;)</code></pre>
+<pre class="r"><code>setdiff(donor_EOPC$icgc_donor_id,EOPC_exposure_specimen$icgc_donor_id)</code></pre>
+<pre><code>## character(0)</code></pre>
+<p>##Create summary statistics
+#select</p>
+<pre class="r"><code>#Drop all the columns that contain NA only 
+EOPC_exposure_specimen1&lt;-EOPC_exposure_specimen%&gt;%select(-study_donor_involved_in,-donor_relapse_type,-donor_tumour_stage_at_diagnosis_supplemental,-cancer_type_prior_malignancy,-exposure_type,-exposure_intensity,-tobacco_smoking_intensity,-project_code.y,-submitted_donor_id.y,-donor_relapse_interval,-cancer_history_first_degree_relative)
+
+finaldataset&lt;-na.omit(EOPC_exposure_specimen1)</code></pre>
+<pre class="r"><code>#I want to see the time gap between the patients&#39; smoking history and the time they were diagnosed with prostate cancer.
+finaldataset%&gt;%select(icgc_donor_id,tobacco_smoking_history_indicator,donor_age_at_diagnosis)%&gt;%glimpse()</code></pre>
+<pre><code>## Rows: 186
+## Columns: 3
+## $ icgc_donor_id                     &lt;chr&gt; &quot;DO228049&quot;, &quot;DO228042&quot;, &quot;DO228041&quot;,…
+## $ tobacco_smoking_history_indicator &lt;chr&gt; &quot;Current reformed smoker for &lt;= 15 …
+## $ donor_age_at_diagnosis            &lt;dbl&gt; 48, 44, 49, 50, 47, 48, 47, 43, 45,…</code></pre>
+<p>#filter. I want to see if alcohol history will have any influence on the mortality of prostate cancer patients. There are too many “don’t know/not sure” on alcohol history in this case so we can’t really tell the impact.</p>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;alive&quot;,alcohol_history==&quot;yes&quot;)</code></pre>
+<pre><code>## # A tibble: 35 x 22
+##    icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+##  1 DO228049      EOPC-DE        EOPC-113         male      alive           
+##  2 DO228043      EOPC-DE        EOPC-107         male      alive           
+##  3 DO228047      EOPC-DE        EOPC-111         male      alive           
+##  4 DO228050      EOPC-DE        EOPC-114         male      alive           
+##  5 DO228053      EOPC-DE        EOPC-117         male      alive           
+##  6 DO228054      EOPC-DE        EOPC-118         male      alive           
+##  7 DO228063      EOPC-DE        EOPC-132         male      alive           
+##  8 DO228082      EOPC-DE        EOPC-159         male      alive           
+##  9 DO228084      EOPC-DE        EOPC-161         male      alive           
+## 10 DO228085      EOPC-DE        EOPC-162         male      alive           
+## # … with 25 more rows, and 17 more variables:
+## #   disease_status_last_followup &lt;chr&gt;, donor_age_at_diagnosis &lt;dbl&gt;,
+## #   donor_age_at_enrollment &lt;dbl&gt;, donor_age_at_last_followup &lt;dbl&gt;,
+## #   donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;alive&quot;,alcohol_history==&quot;Don&#39;t know/Not sure&quot;)</code></pre>
+<pre><code>## # A tibble: 135 x 22
+##    icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+##  1 DO228042      EOPC-DE        EOPC-104         male      alive           
+##  2 DO228041      EOPC-DE        EOPC-103         male      alive           
+##  3 DO228044      EOPC-DE        EOPC-108         male      alive           
+##  4 DO228046      EOPC-DE        EOPC-110         male      alive           
+##  5 DO228048      EOPC-DE        EOPC-112         male      alive           
+##  6 DO228057      EOPC-DE        EOPC-124         male      alive           
+##  7 DO228056      EOPC-DE        EOPC-123         male      alive           
+##  8 DO228059      EOPC-DE        EOPC-126         male      alive           
+##  9 DO228058      EOPC-DE        EOPC-125         male      alive           
+## 10 DO228060      EOPC-DE        EOPC-127         male      alive           
+## # … with 125 more rows, and 17 more variables:
+## #   disease_status_last_followup &lt;chr&gt;, donor_age_at_diagnosis &lt;dbl&gt;,
+## #   donor_age_at_enrollment &lt;dbl&gt;, donor_age_at_last_followup &lt;dbl&gt;,
+## #   donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;alive&quot;,alcohol_history==&quot;no&quot;)</code></pre>
+<pre><code>## # A tibble: 11 x 22
+##    icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+##  1 DO228055      EOPC-DE        EOPC-122         male      alive           
+##  2 DO228093      EOPC-DE        EOPC-170         male      alive           
+##  3 DO228106      EOPC-DE        EOPC-183         male      alive           
+##  4 DO228130      EOPC-DE        LOPC-032         male      alive           
+##  5 DO228133      EOPC-DE        LOPC-041         male      alive           
+##  6 DO228286      EOPC-DE        EOPC-044         male      alive           
+##  7 DO228709      EOPC-DE        EOPC-078         male      alive           
+##  8 DO228728      EOPC-DE        EOPC-081         male      alive           
+##  9 DO227411      EOPC-DE        EOPC-080         male      alive           
+## 10 DO227448      EOPC-DE        EOPC-128         male      alive           
+## 11 DO227454      EOPC-DE        EOPC-156         male      alive           
+## # … with 17 more variables: disease_status_last_followup &lt;chr&gt;,
+## #   donor_age_at_diagnosis &lt;dbl&gt;, donor_age_at_enrollment &lt;dbl&gt;,
+## #   donor_age_at_last_followup &lt;dbl&gt;, donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;deceased&quot;,alcohol_history==&quot;yes&quot;)</code></pre>
+<pre><code>## # A tibble: 2 x 22
+##   icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##   &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+## 1 DO228122      EOPC-DE        LOPC-002         male      deceased        
+## 2 DO52516       EOPC-DE        EOPC-041         male      deceased        
+## # … with 17 more variables: disease_status_last_followup &lt;chr&gt;,
+## #   donor_age_at_diagnosis &lt;dbl&gt;, donor_age_at_enrollment &lt;dbl&gt;,
+## #   donor_age_at_last_followup &lt;dbl&gt;, donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;deceased&quot;,alcohol_history==&quot;Don&#39;t know/Not sure&quot;)</code></pre>
+<pre><code>## # A tibble: 2 x 22
+##   icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##   &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+## 1 DO228114      EOPC-DE        EOPC-192         male      deceased        
+## 2 DO228751      EOPC-DE        EOPC-084         male      deceased        
+## # … with 17 more variables: disease_status_last_followup &lt;chr&gt;,
+## #   donor_age_at_diagnosis &lt;dbl&gt;, donor_age_at_enrollment &lt;dbl&gt;,
+## #   donor_age_at_last_followup &lt;dbl&gt;, donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<pre class="r"><code>finaldataset%&gt;%filter(donor_vital_status==&quot;deceased&quot;,alcohol_history==&quot;no&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 22
+##   icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##   &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;           
+## 1 DO228069      EOPC-DE        EOPC-142         male      deceased        
+## # … with 17 more variables: disease_status_last_followup &lt;chr&gt;,
+## #   donor_age_at_diagnosis &lt;dbl&gt;, donor_age_at_enrollment &lt;dbl&gt;,
+## #   donor_age_at_last_followup &lt;dbl&gt;, donor_diagnosis_icd10 &lt;chr&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;chr&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;chr&gt;, donor_survival_time &lt;dbl&gt;,
+## #   donor_interval_of_last_followup &lt;dbl&gt;, prior_malignancy &lt;chr&gt;,
+## #   tobacco_smoking_history_indicator &lt;chr&gt;, alcohol_history &lt;chr&gt;,
+## #   alcohol_history_intensity &lt;chr&gt;, specimen_interval &lt;dbl&gt;,
+## #   specimen_donor_treatment_type &lt;chr&gt;, `Normal - blood derived` &lt;chr&gt;,
+## #   `Primary tumour - solid tissue` &lt;chr&gt;</code></pre>
+<p>#arrange. The highest age of diagnosis and enrollment in the survey is 75, the youngest is 38 years old. Prostate cancer typically affects men over 50, so the guy at 38 with cancer is a rare case. This result is based on the dataset with na.omit. I did run this code with the original dataset, and the youngest age is 32, while the oldest age stays the same, 75.</p>
+<pre class="r"><code>finaldataset%&gt;%select(icgc_donor_id,donor_age_at_diagnosis,donor_age_at_enrollment)%&gt;%arrange(desc(donor_age_at_diagnosis),desc(donor_age_at_enrollment))%&gt;%head()</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   icgc_donor_id donor_age_at_diagnosis donor_age_at_enrollment
+##   &lt;chr&gt;                          &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 DO228125                          75                      75
+## 2 DO228128                          72                      72
+## 3 DO228122                          72                      72
+## 4 DO228133                          72                      72
+## 5 DO228126                          66                      66
+## 6 DO228075                          64                      64</code></pre>
+<pre class="r"><code>finaldataset%&gt;%select(icgc_donor_id,donor_age_at_diagnosis,donor_age_at_enrollment)%&gt;%arrange(desc(donor_age_at_diagnosis),desc(donor_age_at_enrollment))%&gt;%tail()</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   icgc_donor_id donor_age_at_diagnosis donor_age_at_enrollment
+##   &lt;chr&gt;                          &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 DO228076                          40                      40
+## 2 DO227414                          40                      40
+## 3 DO227410                          40                      40
+## 4 DO52524                           40                      40
+## 5 DO52503                           40                      40
+## 6 DO10815                           38                      38</code></pre>
+<p>#group_by: it is hard to tell when the survival time are depicted in days, so I change it to year</p>
+<pre class="r"><code>finaldataset%&gt;%group_by(donor_age_at_diagnosis)%&gt;%summarise()</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 23 x 1
+##    donor_age_at_diagnosis
+##                     &lt;dbl&gt;
+##  1                     38
+##  2                     40
+##  3                     41
+##  4                     42
+##  5                     43
+##  6                     44
+##  7                     45
+##  8                     46
+##  9                     47
+## 10                     48
+## # … with 13 more rows</code></pre>
+<p>#summarize</p>
+<pre class="r"><code>#relationship between being alive, at what stage of cancer, and how many cases for each different combinations
+finaldataset%&gt;%group_by(donor_vital_status,disease_status_last_followup)%&gt;%summarize(count=n())</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;donor_vital_status&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   donor_vital_status [2]
+##   donor_vital_status disease_status_last_followup count
+##   &lt;chr&gt;              &lt;chr&gt;                        &lt;int&gt;
+## 1 alive              progression                      8
+## 2 alive              relapse                         25
+## 3 alive              stable                         148
+## 4 deceased           progression                      4
+## 5 deceased           stable                           1</code></pre>
+<pre class="r"><code>#see distinct 
+finaldataset%&gt;%summarize_all(n_distinct)</code></pre>
+<pre><code>## # A tibble: 1 x 22
+##   icgc_donor_id project_code.x submitted_donor… donor_sex donor_vital_sta…
+##           &lt;int&gt;          &lt;int&gt;            &lt;int&gt;     &lt;int&gt;            &lt;int&gt;
+## 1           186              1              186         1                2
+## # … with 17 more variables: disease_status_last_followup &lt;int&gt;,
+## #   donor_age_at_diagnosis &lt;int&gt;, donor_age_at_enrollment &lt;int&gt;,
+## #   donor_age_at_last_followup &lt;int&gt;, donor_diagnosis_icd10 &lt;int&gt;,
+## #   donor_tumour_staging_system_at_diagnosis &lt;int&gt;,
+## #   donor_tumour_stage_at_diagnosis &lt;int&gt;, donor_survival_time &lt;int&gt;,
+## #   donor_interval_of_last_followup &lt;int&gt;, prior_malignancy &lt;int&gt;,
+## #   tobacco_smoking_history_indicator &lt;int&gt;, alcohol_history &lt;int&gt;,
+## #   alcohol_history_intensity &lt;int&gt;, specimen_interval &lt;int&gt;,
+## #   specimen_donor_treatment_type &lt;int&gt;, `Normal - blood derived` &lt;int&gt;,
+## #   `Primary tumour - solid tissue` &lt;int&gt;</code></pre>
+<pre class="r"><code>#Let&#39;s see if the survival time differs largely among people with different alcohol history
+finaldataset %&gt;%group_by(alcohol_history) %&gt;%summarize(mean_survival_time=mean(donor_survival_time))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   alcohol_history     mean_survival_time
+##   &lt;chr&gt;                            &lt;dbl&gt;
+## 1 Don&#39;t know/Not sure              1171.
+## 2 no                                975.
+## 3 yes                               783.</code></pre>
+<pre class="r"><code>#Let&#39;s see the median age by disease status at last follow up
+finaldataset %&gt;%group_by(disease_status_last_followup) %&gt;%summarize(median_age=median(donor_age_at_last_followup))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   disease_status_last_followup median_age
+##   &lt;chr&gt;                             &lt;dbl&gt;
+## 1 progression                          54
+## 2 relapse                              52
+## 3 stable                               51</code></pre>
+<pre class="r"><code>#Let&#39;s see the age range by vital status
+finaldataset %&gt;%group_by(donor_vital_status) %&gt;%summarize(min_age_by_vital_status=min(donor_age_at_last_followup),max_age_by_vital_status=max(donor_age_at_last_followup))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   donor_vital_status min_age_by_vital_status max_age_by_vital_status
+##   &lt;chr&gt;                                &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 alive                                   41                      76
+## 2 deceased                                48                      74</code></pre>
+<p>#mutate: Just a clarification on stage of tumour at diagnosis. What do those T1c, T1a, etc mean?</p>
+<pre class="r"><code>finaldataset_mutate&lt;-finaldataset%&gt;% mutate(tumor_stage_at_diagnosis=recode(donor_tumour_stage_at_diagnosis, T1c=&quot;stage1-just found&quot;, T2a=&quot;stage2-half of one prostate&#39;s side&quot;,T2b=&quot;stage2-more than one half of one side&quot;,T3a=&quot;stage3-tumour grown outside the prostate&quot;,T2c=&quot;stage2-both sides of prostate&quot;))
+glimpse(finaldataset_mutate)</code></pre>
+<pre><code>## Rows: 186
+## Columns: 23
+## $ icgc_donor_id                            &lt;chr&gt; &quot;DO228049&quot;, &quot;DO228042&quot;, &quot;DO2…
+## $ project_code.x                           &lt;chr&gt; &quot;EOPC-DE&quot;, &quot;EOPC-DE&quot;, &quot;EOPC-…
+## $ submitted_donor_id.x                     &lt;chr&gt; &quot;EOPC-113&quot;, &quot;EOPC-104&quot;, &quot;EOP…
+## $ donor_sex                                &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;mal…
+## $ donor_vital_status                       &lt;chr&gt; &quot;alive&quot;, &quot;alive&quot;, &quot;alive&quot;, &quot;…
+## $ disease_status_last_followup             &lt;chr&gt; &quot;progression&quot;, &quot;stable&quot;, &quot;st…
+## $ donor_age_at_diagnosis                   &lt;dbl&gt; 48, 44, 49, 50, 47, 48, 47, …
+## $ donor_age_at_enrollment                  &lt;dbl&gt; 49, 44, 49, 51, 48, 48, 47, …
+## $ donor_age_at_last_followup               &lt;dbl&gt; 52, 47, 53, 53, 51, 52, 51, …
+## $ donor_diagnosis_icd10                    &lt;chr&gt; &quot;C61&quot;, &quot;C61&quot;, &quot;C61&quot;, &quot;C61&quot;, …
+## $ donor_tumour_staging_system_at_diagnosis &lt;chr&gt; &quot;DRE and ultrasound&quot;, &quot;DRE a…
+## $ donor_tumour_stage_at_diagnosis          &lt;chr&gt; &quot;T1c&quot;, &quot;T1c&quot;, &quot;T1c&quot;, &quot;T1c&quot;, …
+## $ donor_survival_time                      &lt;dbl&gt; 1155, 1160, 1533, 1105, 1311…
+## $ donor_interval_of_last_followup          &lt;dbl&gt; 1155, 1160, 1533, 1105, 1311…
+## $ prior_malignancy                         &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;…
+## $ tobacco_smoking_history_indicator        &lt;chr&gt; &quot;Current reformed smoker for…
+## $ alcohol_history                          &lt;chr&gt; &quot;yes&quot;, &quot;Don&#39;t know/Not sure&quot;…
+## $ alcohol_history_intensity                &lt;chr&gt; &quot;Not Documented&quot;, &quot;Not Docum…
+## $ specimen_interval                        &lt;dbl&gt; 28, 45, 41, 139, 73, 85, 63,…
+## $ specimen_donor_treatment_type            &lt;chr&gt; &quot;no treatment&quot;, &quot;no treatmen…
+## $ `Normal - blood derived`                 &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;…
+## $ `Primary tumour - solid tissue`          &lt;chr&gt; &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, …
+## $ tumor_stage_at_diagnosis                 &lt;chr&gt; &quot;stage1-just found&quot;, &quot;stage1…</code></pre>
+<p>#Visualizing
+#Correlation heat map. Apparently there’s a high correlation between the three age types, age at diagnosis, age at last follow up and age at enrollment. These kinds of patterns are also visible in the clustering result underneath.</p>
+<pre class="r"><code>finaldataset%&gt;% select_if(is.numeric) %&gt;% cor %&gt;% as.data.frame %&gt;%
+rownames_to_column %&gt;% pivot_longer(-1) %&gt;%
+ggplot(aes(rowname,name,fill=value))+geom_tile()+
+geom_text(aes(label=round(value,2)))+
+xlab(&quot;&quot;)+ylab(&quot;&quot;)+coord_fixed()+
+scale_fill_gradient2(low=&quot;red&quot;,mid=&quot;white&quot;,high=&quot;blue&quot;) + theme(axis.text.x=element_text(angle=45,hjust=1))</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>#plots</p>
+<pre class="r"><code>#not choosing geom_point because there are donors that have the same age. The points on the plot won&#39;t tell how many donors are there or the proportion/frequency of people of the same age
+#ggplot(finaldataset, aes(x=donor_tumour_stage_at_diagnosis,y=donor_age_at_diagnosis,color=&quot;red&quot;, fill=donor_age_at_diagnosis)) +geom_point()</code></pre>
+<pre class="r"><code>ggplot(finaldataset, aes(x=donor_age_at_diagnosis, fill=donor_tumour_stage_at_diagnosis)) +geom_histogram(binwidth = 2,colour=&quot;black&quot;)+scale_x_continuous(breaks = seq(30,75,5))+scale_y_continuous(breaks = seq(0,60,5))+ggtitle(&quot;Histogram of diagnosis age and tumour stage&quot;)+xlab(&quot;Age at diagnosis&quot;)+ylab(&quot;Count&quot;)</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code>#COMMENT: I tried boxplot, geom_point, geom_density and the histogram to see which one fits best. Histogram looks like the most informaive graph I can make for what I want: what age range is the most popular for prostate cancer diagnosis; and when the donors got diagnosed, what tumour stage were they in? Results are interesting. Most of the prostate cancer donors here got diagnosed at around 40 - 50 years old, and most of them were in the first stage of cancer. Rare cases where the donors were as old as 75, being at stage 2 happened as well. </code></pre>
+<pre class="r"><code>ggplot(finaldataset, aes(x = alcohol_history, y = donor_survival_time, fill= alcohol_history))+  geom_bar(stat=&quot;summary&quot;,fun=mean)+  geom_errorbar(stat=&quot;summary&quot;, fun.data=mean_se)+ggtitle(&quot;Survival time vs Alcohol history&quot;)+xlab(&quot;Alcohol history&quot;)+ylab(&quot;Donors&#39; survival time&quot;)</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code>#COMMENT: I wanted to see alcohol history vs survival time relationship. The don&#39;tknow/not sure column won&#39;t be telling us much due to the fact that donors could not give a concrete answer to their alcolhol history. But a yes to alcolhol history shows a shorter average survival time, around 750 days, which is approximately 2 years. Patients with no alcohol history might be able to live longer, around 3 years</code></pre>
+<p>##k-means</p>
+<pre class="r"><code>library(tidyverse)
+library(cluster)</code></pre>
+<p>#There are 6 numeric variables in the finaldataset. However, here I only pick 3. This is because some of the numeric variabels in my dataset are basically similar in meaning, such as donor_survival_time and donor_interval_of_last_followup. Another numeric variable that I didn’t include in clustering is the specimen interval. Since I’m mainly dealing with age, specimen interval won’t be meaningful in clustering in my opinion.</p>
+<pre class="r"><code>clust_dat&lt;-finaldataset%&gt;%dplyr::select(donor_age_at_diagnosis,donor_age_at_last_followup,donor_survival_time)</code></pre>
+<p>#Let’s find the right number for k. k=6 seems like the best for the number of clusters based on my dataset. I also try k=7,8,9. They also give higher total variance in the data set that is explained by the clustering. However, I just feel like 9 clusters are just a little bit too many. k=6 gives the total variance at 96.9%, which I feel enough to deal with.</p>
+<pre class="r"><code>library(cluster)
+sil_width&lt;-vector() #empty vector to hold mean sil width
+for(i in 2:10){  
+  kms &lt;- kmeans(clust_dat,centers=i) #compute k-means solution
+  sil &lt;- silhouette(kms$cluster,dist(clust_dat)) #get sil widths
+  sil_width[i]&lt;-mean(sil[,3]) #take averages (higher is better)
+}
+ggplot()+geom_line(aes(x=1:10,y=sil_width))+scale_x_continuous(name=&quot;k&quot;,breaks=1:10)</code></pre>
+<pre><code>## Warning: Removed 1 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>#Specify k=6</p>
+<pre class="r"><code>kmeans1 &lt;- clust_dat%&gt;%kmeans(6)
+kmeans1</code></pre>
+<pre><code>## K-means clustering with 6 clusters of sizes 18, 34, 39, 45, 41, 9
+## 
+## Cluster means:
+##   donor_age_at_diagnosis donor_age_at_last_followup donor_survival_time
+## 1               47.11111                   52.50000           1847.7222
+## 2               47.82353                   52.17647           1530.5882
+## 3               47.71795                   49.94872            779.4872
+## 4               48.62222                   51.95556           1167.0222
+## 5               49.87805                   51.00000            306.3659
+## 6               47.33333                   53.88889           2257.4444
+## 
+## Clustering vector:
+##   [1] 4 4 2 4 4 2 2 4 3 4 3 4 3 5 3 3 3 2 4 6 5 2 5 2 2 3 5 1 1 5 5 2 4 2 2 3 5
+##  [38] 6 3 3 4 3 3 5 3 2 3 4 4 2 1 4 2 3 3 3 3 2 4 3 4 4 3 5 2 5 5 2 3 1 4 4 5 2
+##  [75] 4 2 2 2 3 3 5 2 3 4 2 3 1 4 3 4 6 5 5 5 4 2 5 4 4 4 5 3 1 5 5 5 4 5 3 5 6
+## [112] 1 4 4 4 5 3 4 5 3 2 5 5 6 3 2 3 5 5 5 5 4 5 5 2 4 5 3 4 4 3 2 3 3 4 6 3 5
+## [149] 5 5 1 6 1 2 3 1 2 6 4 1 6 3 4 4 1 4 1 5 1 4 2 4 2 1 2 5 5 1 1 2 1 5 4 4 2
+## [186] 4
+## 
+## Within cluster sum of squares by cluster:
+## [1]   56039.89  119050.12  396551.54  203295.47 1186133.90  143883.11
+##  (between_SS / total_SS =  96.5 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
+## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
+<pre class="r"><code>kmeansclust&lt;-clust_dat%&gt;%mutate(cluster=as.factor(kmeans1$cluster)) #save the cluster solution in your dataset
+kmeansclust%&gt;%ggplot(aes(donor_age_at_diagnosis,donor_age_at_last_followup,color=cluster))+geom_point()</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code>kmeansclust%&gt;%ggplot(aes(donor_survival_time,donor_age_at_diagnosis,color=cluster))+geom_point()</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<pre class="r"><code>kmeansclust%&gt;%ggplot(aes(donor_age_at_last_followup,donor_survival_time,color=cluster))+geom_point()</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<pre class="r"><code>library(GGally)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre class="r"><code>ggpairs(kmeansclust,columns =1:3, aes(color=cluster))</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>#So I run both ggplot and ggpairs. I will explain my results from ggpairs because it gives a more holistic overview of the clustering result. The density plots along the diagonal shows that the age at diagnosis and age at last followup are mostly around people with 40-50 years of age. Donor survival time, however, scatters from very short to very long. The clusters showed as the scatter plots are interesting. The clusters show that I can group people mostly based on their survival time, since age at diagnosis and age at last followup are not too distinctly different (only a few years!). Based on the Pearson’s Correlation Coefficient, age at last follow up and age at diagnosis are highly correlated. However, survival time is not really in high correlation with the other two variables. I’m not sure but I guess this is because the survival time is counted in days, while the other two variables are counted in years? Anyhow, the clustering results still show understandable visualization on different groups of donors, based on their similarity in ages at diagnosis, at follow up, and survival time!</p>
+</div>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../js/docs.min.js"></script>
+<script src="../../js/main.js"></script>
+
+<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

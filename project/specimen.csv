@@ -1,0 +1,449 @@
+icgc_donor_id,specimen_type,specimen_type_other,specimen_interval,specimen_donor_treatment_type,tumour_confirmed
+DO228049,Normal - blood derived,NA,28,no treatment,no
+DO228049,Primary tumour - solid tissue,NA,28,no treatment,yes
+DO228042,Normal - blood derived,NA,45,no treatment,no
+DO228042,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228041,Primary tumour - solid tissue,NA,41,no treatment,yes
+DO228041,Normal - blood derived,NA,41,no treatment,no
+DO228044,Primary tumour - solid tissue,NA,139,no treatment,yes
+DO228044,Normal - blood derived,NA,139,no treatment,no
+DO228043,Primary tumour - solid tissue,NA,73,no treatment,yes
+DO228043,Normal - blood derived,NA,73,no treatment,no
+DO228046,Primary tumour - solid tissue,NA,85,no treatment,yes
+DO228046,Normal - blood derived,NA,85,no treatment,no
+DO228045,Primary tumour - solid tissue,NA,119,no treatment,yes
+DO228045,Normal - blood derived,NA,119,no treatment,no
+DO228048,Normal - blood derived,NA,63,no treatment,no
+DO228048,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228047,Normal - blood derived,NA,170,no treatment,no
+DO228047,Primary tumour - solid tissue,NA,170,no treatment,yes
+DO228051,Primary tumour - solid tissue,NA,75,no treatment,yes
+DO228051,Normal - blood derived,NA,75,no treatment,no
+DO228050,Primary tumour - solid tissue,NA,42,no treatment,yes
+DO228050,Normal - blood derived,NA,42,no treatment,no
+DO228053,Normal - blood derived,NA,33,no treatment,no
+DO228053,Primary tumour - solid tissue,NA,33,no treatment,yes
+DO228052,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO228052,Normal - blood derived,NA,99,no treatment,no
+DO228055,Normal - blood derived,NA,31,no treatment,no
+DO228055,Primary tumour - solid tissue,NA,31,no treatment,yes
+DO228054,Normal - blood derived,NA,25,no treatment,no
+DO228054,Primary tumour - solid tissue,NA,25,no treatment,yes
+DO228057,Normal - blood derived,NA,89,no treatment,no
+DO228057,Primary tumour - solid tissue,NA,89,no treatment,yes
+DO228056,Normal - blood derived,NA,98,no treatment,no
+DO228056,Primary tumour - solid tissue,NA,98,no treatment,yes
+DO228059,Normal - blood derived,NA,61,no treatment,no
+DO228059,Primary tumour - solid tissue,NA,61,no treatment,yes
+DO228058,Normal - blood derived,NA,204,other therapy,no
+DO228058,Primary tumour - solid tissue,NA,204,other therapy,yes
+DO228060,Primary tumour - solid tissue,NA,65,no treatment,yes
+DO228060,Normal - blood derived,NA,65,no treatment,no
+DO228062,Primary tumour - solid tissue,NA,48,no treatment,yes
+DO228062,Normal - blood derived,NA,48,no treatment,no
+DO228061,Normal - blood derived,NA,80,no treatment,no
+DO228061,Primary tumour - solid tissue,NA,80,no treatment,yes
+DO228064,Primary tumour - solid tissue,NA,78,no treatment,yes
+DO228064,Normal - blood derived,NA,78,no treatment,no
+DO228063,Primary tumour - solid tissue,NA,28,no treatment,yes
+DO228063,Normal - blood derived,NA,28,no treatment,no
+DO228066,Normal - blood derived,NA,46,no treatment,no
+DO228066,Primary tumour - solid tissue,NA,46,no treatment,yes
+DO228065,Normal - blood derived,NA,90,no treatment,no
+DO228065,Primary tumour - solid tissue,NA,90,no treatment,yes
+DO228068,Normal - blood derived,NA,63,no treatment,no
+DO228068,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228067,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228067,Normal - blood derived,NA,45,no treatment,no
+DO228069,Primary tumour - solid tissue,NA,62,no treatment,yes
+DO228069,Normal - blood derived,NA,62,no treatment,no
+DO228071,Primary tumour - solid tissue,NA,85,no treatment,yes
+DO228071,Normal - blood derived,NA,85,no treatment,no
+DO228070,Primary tumour - solid tissue,NA,59,no treatment,yes
+DO228070,Normal - blood derived,NA,59,no treatment,no
+DO228073,Normal - blood derived,NA,60,no treatment,no
+DO228073,Primary tumour - solid tissue,NA,60,no treatment,yes
+DO228072,Normal - blood derived,NA,40,no treatment,no
+DO228072,Primary tumour - solid tissue,NA,40,no treatment,yes
+DO228075,Primary tumour - solid tissue,NA,90,no treatment,yes
+DO228075,Normal - blood derived,NA,90,no treatment,no
+DO228074,Normal - blood derived,NA,45,no treatment,no
+DO228074,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228077,Primary tumour - solid tissue,NA,68,no treatment,yes
+DO228077,Normal - blood derived,NA,68,no treatment,no
+DO228076,Primary tumour - solid tissue,NA,71,no treatment,yes
+DO228076,Normal - blood derived,NA,71,no treatment,no
+DO228079,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO228079,Normal - blood derived,NA,49,no treatment,no
+DO228078,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228078,Normal - blood derived,NA,63,no treatment,no
+DO228080,Normal - blood derived,NA,51,no treatment,no
+DO228080,Primary tumour - solid tissue,NA,51,no treatment,yes
+DO228082,Normal - blood derived,NA,43,no treatment,no
+DO228082,Primary tumour - solid tissue,NA,43,no treatment,yes
+DO228081,Primary tumour - solid tissue,NA,69,no treatment,yes
+DO228081,Normal - blood derived,NA,69,no treatment,no
+DO228084,Normal - blood derived,NA,21,no treatment,no
+DO228084,Primary tumour - solid tissue,NA,21,no treatment,yes
+DO228083,Primary tumour - solid tissue,NA,39,no treatment,yes
+DO228083,Normal - blood derived,NA,39,no treatment,no
+DO228086,Normal - blood derived,NA,43,no treatment,no
+DO228086,Primary tumour - solid tissue,NA,43,no treatment,yes
+DO228085,Normal - blood derived,NA,78,no treatment,no
+DO228085,Primary tumour - solid tissue,NA,78,no treatment,yes
+DO228088,Normal - blood derived,NA,78,no treatment,no
+DO228088,Primary tumour - solid tissue,NA,78,no treatment,yes
+DO228087,Normal - blood derived,NA,40,no treatment,no
+DO228087,Primary tumour - solid tissue,NA,40,no treatment,yes
+DO228089,Normal - blood derived,NA,78,no treatment,no
+DO228089,Primary tumour - solid tissue,NA,78,no treatment,yes
+DO228091,Primary tumour - solid tissue,NA,425,no treatment,yes
+DO228091,Normal - blood derived,NA,425,no treatment,no
+DO228090,Normal - blood derived,NA,52,no treatment,no
+DO228090,Primary tumour - solid tissue,NA,52,no treatment,yes
+DO228093,Primary tumour - solid tissue,NA,70,no treatment,yes
+DO228093,Normal - blood derived,NA,70,no treatment,no
+DO228092,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228092,Normal - blood derived,NA,45,no treatment,no
+DO228095,Primary tumour - solid tissue,NA,83,no treatment,yes
+DO228095,Normal - blood derived,NA,83,no treatment,no
+DO228094,Primary tumour - solid tissue,NA,32,no treatment,yes
+DO228094,Normal - blood derived,NA,32,no treatment,no
+DO228097,Normal - blood derived,NA,47,no treatment,no
+DO228097,Primary tumour - solid tissue,NA,47,no treatment,yes
+DO228096,Primary tumour - solid tissue,NA,68,no treatment,yes
+DO228096,Normal - blood derived,NA,68,no treatment,no
+DO228099,Normal - blood derived,NA,148,other therapy,no
+DO228099,Primary tumour - solid tissue,NA,148,other therapy,yes
+DO228098,Primary tumour - solid tissue,NA,59,no treatment,yes
+DO228098,Normal - blood derived,NA,59,no treatment,no
+DO228028,Normal - blood derived,NA,71,no treatment,no
+DO228028,Primary tumour - solid tissue,NA,71,no treatment,yes
+DO228027,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO228027,Normal - blood derived,NA,58,no treatment,no
+DO228029,Primary tumour - solid tissue,NA,35,no treatment,yes
+DO228029,Normal - blood derived,NA,35,no treatment,no
+DO228039,Primary tumour - solid tissue,NA,107,no treatment,yes
+DO228039,Normal - blood derived,NA,107,no treatment,no
+DO228038,Normal - blood derived,NA,50,no treatment,no
+DO228038,Primary tumour - solid tissue,NA,50,no treatment,yes
+DO228031,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO228031,Normal - blood derived,NA,58,no treatment,no
+DO228030,Normal - blood derived,NA,79,other therapy,no
+DO228030,Primary tumour - solid tissue,NA,79,other therapy,yes
+DO228033,Primary tumour - solid tissue,NA,50,no treatment,yes
+DO228033,Normal - blood derived,NA,50,no treatment,no
+DO228032,Normal - blood derived,NA,51,no treatment,no
+DO228032,Primary tumour - solid tissue,NA,51,no treatment,yes
+DO228035,Primary tumour - solid tissue,NA,54,no treatment,yes
+DO228035,Normal - blood derived,NA,54,no treatment,no
+DO228034,Normal - blood derived,NA,55,no treatment,no
+DO228034,Primary tumour - solid tissue,NA,55,no treatment,yes
+DO228037,Primary tumour - solid tissue,NA,91,other therapy,yes
+DO228037,Normal - blood derived,NA,91,other therapy,no
+DO228036,Normal - blood derived,NA,45,no treatment,no
+DO228036,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228040,Primary tumour - solid tissue,NA,60,no treatment,yes
+DO228040,Normal - blood derived,NA,60,no treatment,no
+DO228105,Primary tumour - solid tissue,NA,62,no treatment,yes
+DO228105,Normal - blood derived,NA,62,no treatment,no
+DO228104,Primary tumour - solid tissue,NA,204,no treatment,yes
+DO228104,Normal - blood derived,NA,204,no treatment,no
+DO228107,Primary tumour - solid tissue,NA,53,no treatment,yes
+DO228107,Normal - blood derived,NA,53,no treatment,no
+DO228106,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228106,Normal - blood derived,NA,45,no treatment,no
+DO228109,Normal - blood derived,NA,55,no treatment,no
+DO228109,Primary tumour - solid tissue,NA,55,no treatment,yes
+DO228108,Primary tumour - solid tissue,NA,71,no treatment,yes
+DO228108,Normal - blood derived,NA,71,no treatment,no
+DO228101,Normal - blood derived,NA,27,no treatment,no
+DO228101,Primary tumour - solid tissue,NA,27,no treatment,yes
+DO228100,Normal - blood derived,NA,81,no treatment,no
+DO228100,Primary tumour - solid tissue,NA,81,no treatment,yes
+DO228103,Normal - blood derived,NA,101,no treatment,no
+DO228103,Primary tumour - solid tissue,NA,101,no treatment,yes
+DO228102,Primary tumour - solid tissue,NA,104,no treatment,yes
+DO228102,Normal - blood derived,NA,104,no treatment,no
+DO228116,Primary tumour - solid tissue,NA,67,no treatment,yes
+DO228116,Normal - blood derived,NA,67,no treatment,no
+DO228115,Normal - blood derived,NA,86,no treatment,no
+DO228115,Primary tumour - solid tissue,NA,86,no treatment,yes
+DO228118,Normal - blood derived,NA,33,no treatment,no
+DO228118,Primary tumour - solid tissue,NA,33,no treatment,yes
+DO228117,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO228117,Normal - blood derived,NA,49,no treatment,no
+DO228119,Primary tumour - solid tissue,NA,94,no treatment,yes
+DO228119,Normal - blood derived,NA,94,no treatment,no
+DO228110,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228110,Normal - blood derived,NA,63,no treatment,no
+DO228112,Primary tumour - solid tissue,NA,83,no treatment,yes
+DO228112,Normal - blood derived,NA,83,no treatment,no
+DO228111,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO228111,Normal - blood derived,NA,49,no treatment,no
+DO228114,Primary tumour - solid tissue,NA,55,no treatment,yes
+DO228114,Normal - blood derived,NA,55,no treatment,no
+DO228113,Primary tumour - solid tissue,NA,69,no treatment,yes
+DO228113,Normal - blood derived,NA,69,no treatment,no
+DO228127,Normal - blood derived,NA,39,no treatment,no
+DO228127,Primary tumour - solid tissue,NA,39,no treatment,yes
+DO228126,Normal - blood derived,NA,25,no treatment,no
+DO228126,Primary tumour - solid tissue,NA,25,no treatment,yes
+DO228129,Normal - blood derived,NA,NA,no treatment,no
+DO228129,Primary tumour - solid tissue,NA,NA,no treatment,yes
+DO228128,Primary tumour - solid tissue,NA,41,no treatment,yes
+DO228128,Normal - blood derived,NA,41,no treatment,no
+DO228121,Primary tumour - solid tissue,NA,65,no treatment,yes
+DO228121,Normal - blood derived,NA,65,no treatment,no
+DO228120,Primary tumour - solid tissue,NA,55,other therapy,yes
+DO228120,Normal - blood derived,NA,55,other therapy,no
+DO228123,Primary tumour - solid tissue,NA,36,no treatment,yes
+DO228123,Normal - blood derived,NA,36,no treatment,no
+DO228122,Primary tumour - solid tissue,NA,103,no treatment,yes
+DO228122,Normal - blood derived,NA,103,no treatment,no
+DO228125,Primary tumour - solid tissue,NA,59,no treatment,yes
+DO228125,Normal - blood derived,NA,59,no treatment,no
+DO228124,Primary tumour - solid tissue,NA,22,no treatment,yes
+DO228124,Normal - blood derived,NA,22,no treatment,no
+DO228130,Normal - blood derived,NA,62,other therapy,no
+DO228130,Primary tumour - solid tissue,NA,62,other therapy,yes
+DO228132,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228132,Normal - blood derived,NA,63,no treatment,no
+DO228131,Normal - blood derived,NA,35,no treatment,no
+DO228131,Primary tumour - solid tissue,NA,35,no treatment,yes
+DO228133,Normal - blood derived,NA,58,no treatment,no
+DO228133,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO228286,Primary tumour - solid tissue,NA,64,no treatment,yes
+DO228286,Normal - blood derived,NA,64,no treatment,no
+DO228292,Normal - blood derived,NA,24,no treatment,no
+DO228292,Primary tumour - solid tissue,NA,24,no treatment,yes
+DO228296,Primary tumour - solid tissue,NA,30,no treatment,yes
+DO228296,Normal - blood derived,NA,30,no treatment,no
+DO228248,Normal - blood derived,NA,196,no treatment,no
+DO228248,Primary tumour - solid tissue,NA,196,no treatment,yes
+DO228259,Primary tumour - solid tissue,NA,92,no treatment,yes
+DO228259,Normal - blood derived,NA,92,no treatment,no
+DO228250,Normal - blood derived,NA,50,no treatment,no
+DO228250,Primary tumour - solid tissue,NA,50,no treatment,yes
+DO228254,Primary tumour - solid tissue,NA,33,no treatment,yes
+DO228254,Normal - blood derived,NA,33,no treatment,no
+DO228267,Primary tumour - solid tissue,NA,40,no treatment,yes
+DO228267,Normal - blood derived,NA,40,no treatment,no
+DO228273,Normal - blood derived,NA,36,no treatment,no
+DO228273,Primary tumour - solid tissue,NA,36,no treatment,yes
+DO228277,Normal - blood derived,NA,58,no treatment,no
+DO228277,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO228282,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228282,Normal - blood derived,NA,45,no treatment,no
+DO228320,Normal - blood derived,NA,27,no treatment,no
+DO228320,Primary tumour - solid tissue,NA,27,no treatment,yes
+DO228323,Primary tumour - solid tissue,NA,47,no treatment,yes
+DO228323,Normal - blood derived,NA,47,no treatment,no
+DO228335,Primary tumour - solid tissue,NA,41,no treatment,yes
+DO228335,Normal - blood derived,NA,41,no treatment,no
+DO228339,Normal - blood derived,NA,29,no treatment,no
+DO228339,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO228347,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO228347,Normal - blood derived,NA,29,no treatment,no
+DO228354,Primary tumour - solid tissue,NA,57,no treatment,yes
+DO228354,Normal - blood derived,NA,57,no treatment,no
+DO228361,Primary tumour - solid tissue,NA,90,no treatment,yes
+DO228361,Normal - blood derived,NA,90,no treatment,no
+DO228366,Primary tumour - solid tissue,NA,40,no treatment,yes
+DO228366,Normal - blood derived,NA,40,no treatment,no
+DO228370,Primary tumour - solid tissue,NA,27,no treatment,yes
+DO228370,Normal - blood derived,NA,27,no treatment,no
+DO228381,Primary tumour - solid tissue,NA,54,no treatment,yes
+DO228381,Normal - blood derived,NA,54,no treatment,no
+DO228384,Normal - blood derived,NA,37,no treatment,no
+DO228384,Primary tumour - solid tissue,NA,37,no treatment,yes
+DO228389,Normal - blood derived,NA,45,no treatment,no
+DO228389,Primary tumour - solid tissue,NA,45,no treatment,yes
+DO228304,Primary tumour - solid tissue,NA,43,no treatment,yes
+DO228304,Normal - blood derived,NA,43,no treatment,no
+DO228701,Primary tumour - solid tissue,NA,54,no treatment,yes
+DO228701,Normal - blood derived,NA,54,no treatment,no
+DO228706,Normal - blood derived,NA,52,no treatment,no
+DO228706,Primary tumour - solid tissue,NA,52,no treatment,yes
+DO228709,Primary tumour - solid tissue,NA,50,no treatment,yes
+DO228709,Normal - blood derived,NA,50,no treatment,no
+DO228687,Normal - blood derived,NA,61,no treatment,no
+DO228687,Primary tumour - solid tissue,NA,61,no treatment,yes
+DO228683,Normal - blood derived,NA,63,no treatment,no
+DO228683,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO228698,Primary tumour - solid tissue,NA,35,no treatment,yes
+DO228698,Normal - blood derived,NA,35,no treatment,no
+DO228692,Primary tumour - solid tissue,NA,69,no treatment,yes
+DO228692,Normal - blood derived,NA,69,no treatment,no
+DO228696,Normal - blood derived,NA,22,no treatment,no
+DO228696,Primary tumour - solid tissue,NA,22,no treatment,yes
+DO228722,Normal - blood derived,NA,62,no treatment,no
+DO228722,Primary tumour - solid tissue,NA,62,no treatment,yes
+DO228728,Normal - blood derived,NA,29,no treatment,no
+DO228728,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO228737,Primary tumour - solid tissue,NA,56,no treatment,yes
+DO228737,Normal - blood derived,NA,56,no treatment,no
+DO227409,Primary tumour - solid tissue,NA,117,no treatment,yes
+DO227409,Normal - blood derived,NA,117,no treatment,no
+DO227411,Normal - blood derived,NA,40,no treatment,no
+DO227411,Primary tumour - solid tissue,NA,40,no treatment,yes
+DO227412,Normal - blood derived,NA,141,no treatment,no
+DO227412,Primary tumour - solid tissue,NA,141,no treatment,yes
+DO227413,Normal - blood derived,NA,NA,no treatment,no
+DO227413,Primary tumour - solid tissue,NA,1,no treatment,yes
+DO228745,Primary tumour - solid tissue,NA,81,no treatment,yes
+DO228745,Normal - blood derived,NA,81,no treatment,no
+DO227414,Primary tumour - solid tissue,NA,54,no treatment,yes
+DO227414,Normal - blood derived,NA,54,no treatment,no
+DO227416,Normal - blood derived,NA,57,no treatment,no
+DO227416,Primary tumour - solid tissue,NA,57,no treatment,yes
+DO227418,Normal - blood derived,NA,29,no treatment,no
+DO227418,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO227410,Normal - blood derived,NA,60,no treatment,no
+DO227410,Primary tumour - solid tissue,NA,60,no treatment,yes
+DO227424,Primary tumour - solid tissue,NA,78,no treatment,yes
+DO227424,Normal - blood derived,NA,78,no treatment,no
+DO228755,Primary tumour - solid tissue,NA,46,no treatment,yes
+DO228755,Normal - blood derived,NA,46,no treatment,no
+DO227427,Primary tumour - solid tissue,NA,55,no treatment,yes
+DO227427,Normal - blood derived,NA,55,no treatment,no
+DO227429,Normal - blood derived,NA,69,no treatment,no
+DO227429,Primary tumour - solid tissue,NA,69,no treatment,yes
+DO227421,Primary tumour - solid tissue,NA,28,no treatment,yes
+DO227421,Normal - blood derived,NA,28,no treatment,no
+DO228751,Normal - blood derived,NA,330,other therapy,no
+DO228751,Primary tumour - solid tissue,NA,330,other therapy,yes
+DO227434,Primary tumour - solid tissue,NA,81,no treatment,yes
+DO227434,Normal - blood derived,NA,81,no treatment,no
+DO227437,Normal - blood derived,NA,36,no treatment,no
+DO227437,Primary tumour - solid tissue,NA,36,no treatment,yes
+DO227439,Primary tumour - solid tissue,NA,47,no treatment,yes
+DO227439,Normal - blood derived,NA,47,no treatment,no
+DO227432,Normal - blood derived,NA,NA,no treatment,no
+DO227432,Primary tumour - solid tissue,NA,3,no treatment,yes
+DO227444,Normal - blood derived,NA,77,no treatment,no
+DO227444,Primary tumour - solid tissue,NA,77,no treatment,yes
+DO227448,Normal - blood derived,NA,67,no treatment,no
+DO227448,Primary tumour - solid tissue,NA,67,no treatment,yes
+DO227442,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO227442,Normal - blood derived,NA,49,no treatment,no
+DO227451,Normal - blood derived,NA,74,no treatment,no
+DO227451,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO227454,Normal - blood derived,NA,14,no treatment,no
+DO227454,Primary tumour - solid tissue,NA,14,no treatment,yes
+DO10819,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO10819,Normal - blood derived,NA,11,no treatment,no
+DO10817,Normal - blood derived,NA,39,no treatment,no
+DO10817,Primary tumour - solid tissue,NA,39,no treatment,yes
+DO10815,Primary tumour - solid tissue,NA,23,other therapy,yes
+DO10815,Normal - blood derived,NA,23,other therapy,no
+DO10813,Primary tumour - solid tissue,NA,26,no treatment,yes
+DO10813,Normal - blood derived,NA,26,no treatment,no
+DO10811,Primary tumour - solid tissue,NA,54,no treatment,yes
+DO10811,Normal - blood derived,NA,54,no treatment,no
+DO10809,Normal - blood derived,NA,30,no treatment,no
+DO10809,Primary tumour - solid tissue,NA,30,no treatment,yes
+DO10807,Normal - blood derived,NA,12,no treatment,no
+DO10807,Primary tumour - solid tissue,NA,12,no treatment,yes
+DO10806,Primary tumour - solid tissue,NA,53,no treatment,yes
+DO10806,Normal - blood derived,NA,53,no treatment,no
+DO10837,Normal - blood derived,NA,29,no treatment,no
+DO10837,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO10835,Primary tumour - solid tissue,NA,48,no treatment,yes
+DO10835,Normal - blood derived,NA,48,no treatment,no
+DO10833,Normal - blood derived,NA,19,no treatment,no
+DO10833,Primary tumour - solid tissue,NA,19,no treatment,yes
+DO10831,Primary tumour - solid tissue,NA,61,other therapy,yes
+DO10831,Normal - blood derived,NA,61,other therapy,no
+DO10829,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO10829,Normal - blood derived,NA,63,no treatment,no
+DO10827,Normal - blood derived,NA,NA,no treatment,no
+DO10825,Normal - blood derived,NA,44,no treatment,no
+DO10825,Primary tumour - solid tissue,NA,44,no treatment,yes
+DO10823,Primary tumour - solid tissue,NA,43,no treatment,yes
+DO10823,Normal - blood derived,NA,43,no treatment,no
+DO10821,Primary tumour - solid tissue,NA,31,no treatment,yes
+DO10821,Normal - blood derived,NA,31,no treatment,no
+DO52530,Normal - blood derived,NA,71,no treatment,no
+DO52530,Primary tumour - solid tissue,NA,71,no treatment,yes
+DO52532,Primary tumour - solid tissue,NA,72,no treatment,yes
+DO52532,Normal - blood derived,NA,72,no treatment,no
+DO52534,Primary tumour - solid tissue,NA,51,no treatment,yes
+DO52534,Normal - blood derived,NA,51,no treatment,no
+DO52526,Normal - blood derived,NA,55,no treatment,no
+DO52526,Primary tumour - solid tissue,NA,55,no treatment,yes
+DO52528,Primary tumour - solid tissue,NA,30,no treatment,yes
+DO52528,Normal - blood derived,NA,30,no treatment,no
+DO52520,Primary tumour - solid tissue,NA,70,no treatment,yes
+DO52520,Normal - blood derived,NA,70,no treatment,no
+DO52522,Normal - blood derived,NA,58,no treatment,no
+DO52522,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO52524,Primary tumour - solid tissue,NA,29,no treatment,yes
+DO52524,Normal - blood derived,NA,29,no treatment,no
+DO52514,Primary tumour - solid tissue,NA,46,no treatment,yes
+DO52514,Normal - blood derived,NA,46,no treatment,no
+DO52514,Primary tumour - solid tissue,NA,46,no treatment,yes
+DO52516,Normal - blood derived,NA,19,no treatment,no
+DO52516,Primary tumour - solid tissue,NA,19,no treatment,yes
+DO52518,Normal - blood derived,NA,60,no treatment,no
+DO52518,Primary tumour - solid tissue,NA,60,no treatment,yes
+DO52510,Normal - blood derived,NA,11,no treatment,no
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52510,Primary tumour - solid tissue,NA,11,no treatment,yes
+DO52511,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52511,Normal - blood derived,NA,84,no treatment,no
+DO52511,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52511,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52511,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52511,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52512,Normal - blood derived,NA,99,no treatment,no
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52512,Primary tumour - solid tissue,NA,99,no treatment,yes
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52513,Normal - blood derived,NA,63,no treatment,no
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52513,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52503,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO52503,Normal - blood derived,NA,49,no treatment,no
+DO52503,Primary tumour - solid tissue,NA,49,no treatment,yes
+DO52504,Primary tumour - solid tissue,NA,91,no treatment,yes
+DO52504,Normal - blood derived,NA,91,no treatment,no
+DO52505,Normal - blood derived,NA,80,no treatment,no
+DO52505,Primary tumour - solid tissue,NA,80,no treatment,yes
+DO52506,Normal - blood derived,NA,63,no treatment,no
+DO52506,Primary tumour - solid tissue,NA,63,no treatment,yes
+DO52507,Normal - blood derived,NA,22,no treatment,no
+DO52507,Primary tumour - solid tissue,NA,22,no treatment,yes
+DO52508,Primary tumour - solid tissue,NA,66,no treatment,yes
+DO52508,Normal - blood derived,NA,66,no treatment,no
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52509,Normal - blood derived,NA,74,no treatment,no
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52509,Primary tumour - solid tissue,NA,74,no treatment,yes
+DO52500,Normal - blood derived,NA,82,no treatment,no
+DO52500,Primary tumour - solid tissue,NA,82,no treatment,yes
+DO52501,Normal - blood derived,NA,58,no treatment,no
+DO52501,Primary tumour - solid tissue,NA,58,no treatment,yes
+DO52502,Primary tumour - solid tissue,NA,68,no treatment,yes
+DO52502,Normal - blood derived,NA,68,no treatment,no
+DO52502,Primary tumour - solid tissue,NA,68,no treatment,yes
+DO52497,Primary tumour - solid tissue,NA,61,no treatment,yes
+DO52497,Normal - blood derived,NA,61,no treatment,no
+DO52498,Normal - blood derived,NA,30,no treatment,no
+DO52498,Primary tumour - solid tissue,NA,30,no treatment,yes
+DO52499,Primary tumour - solid tissue,NA,84,no treatment,yes
+DO52499,Normal - blood derived,NA,84,no treatment,no
